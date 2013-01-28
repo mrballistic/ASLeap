@@ -1,0 +1,14 @@
+# Build and Release Folders
+bin/
+bin-debug/
+bin-release/
+
+*.air
+
+# stupid os level stuff
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+
+
