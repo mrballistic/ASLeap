@@ -20,6 +20,7 @@ package
 	{
 		
 		private var bg:Sprite;
+		private var frame:Sprite;
 		private var mainApp:com.mrballistic.asleap.ASLeapMain;
 		private var mainHolder:Sprite;
 		private var timer:Timer;
@@ -36,9 +37,17 @@ package
 			bg.graphics.endFill();
 			addChild(bg);
 			
+			// our content wrapper sprite
 			mainHolder = new Sprite();
 			addChild(mainHolder);
-
+			
+			// add a frame around the whole thing
+			frame = new Sprite();
+			frame.graphics.lineStyle(1.0,0x333333,1.0, true);
+			frame.graphics.drawRect(0,0,Constants.WIDTH-1,Constants.HEIGHT-1);
+			frame.graphics.endFill();
+			addChild(frame);
+			
 			// give air a chance to catch up
 			timer = new Timer(1500);
 			timer.addEventListener(TimerEvent.TIMER, function(t:TimerEvent):void{ 
@@ -76,7 +85,6 @@ package
 			mainApp = new ASLeapMain();
 			mainApp.x = 0;
 			mainApp.y = 0;
-			
 			mainHolder.addChild(mainApp);
 
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);			
@@ -86,6 +94,11 @@ package
 		private function handleKeyDown(e:KeyboardEvent):void
 		{
 			switch(e.keyCode){
+				
+				case 82: // 'r' -- resets the app					
+					initApp();
+					break;
+				
 				case 70: // 'f' -- switches from fullscreen to standard small screen  
 					if((stage.displayState == StageDisplayState.FULL_SCREEN_INTERACTIVE)||(stage.displayState == StageDisplayState.FULL_SCREEN)){
 						stage.displayState = StageDisplayState.NORMAL;
