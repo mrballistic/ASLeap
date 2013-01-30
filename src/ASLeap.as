@@ -25,9 +25,6 @@ package
 		private var mainHolder:Sprite;
 		private var timer:Timer;
 		
-		private var init:Boolean = false;
-		
-		
 		public function ASLeap()
 		{
 			// put a nice black background behind the whole thing
@@ -64,7 +61,7 @@ package
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.stageWidth = Constants.WIDTH;
 			stage.stageHeight = Constants.HEIGHT;
-			stage.frameRate = 30;
+			stage.frameRate = 60;
 	
 			stage.nativeWindow.activate();
 			stage.fullScreenSourceRect = new Rectangle(0,0,Constants.WIDTH,Constants.HEIGHT); 
@@ -73,12 +70,10 @@ package
 		}
 		
 		private function onStage():void {
-			if(init) return; // yo dawg, don't reinit after init'ing
-			
+
 			mainHolder.removeChildren();			
 			stage.removeEventListener(KeyboardEvent.KEY_DOWN, handleKeyDown);
-			
-			init = true;
+
 			AppUtils.init(stage, this);
 			
 			// put our app on the stage
@@ -96,7 +91,7 @@ package
 			switch(e.keyCode){
 				
 				case 82: // 'r' -- resets the app					
-					initApp();
+					onStage();
 					break;
 				
 				case 70: // 'f' -- switches from fullscreen to standard small screen  
