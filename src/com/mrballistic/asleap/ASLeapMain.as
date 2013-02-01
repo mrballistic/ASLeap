@@ -91,12 +91,8 @@ package com.mrballistic.asleap
 				// Calculate the hand's pitch, roll, and yaw angles
 				trace( "Hand pitch: " + LeapMath.toDegrees( direction.pitch ) + " degrees, " + "roll: " + LeapMath.toDegrees( normal.roll ) + " degrees, " + "yaw: " + LeapMath.toDegrees( direction.yaw ) + " degrees\n" );
 			}
-			
-			
 		}
-		
-		
-		
+
 		private function destroy(e:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, destroy);
 			trace('removing from stage');
