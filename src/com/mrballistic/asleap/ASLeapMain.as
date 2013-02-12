@@ -1,22 +1,22 @@
 package com.mrballistic.asleap
 {
-	import com.leapmotion.leap.LeapMotion;
+	import com.leapmotion.leap.Finger;
 	import com.leapmotion.leap.Frame;
 	import com.leapmotion.leap.Hand;
-	import com.leapmotion.leap.Finger;
-	import com.leapmotion.leap.util.LeapMath;
+	import com.leapmotion.leap.LeapMotion;
 	import com.leapmotion.leap.Vector3;
 	import com.leapmotion.leap.events.LeapEvent;
+	import com.leapmotion.leap.util.LeapMath;
+	import com.mrballistic.asleap.views.MainView;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
-
 	
 	public class ASLeapMain extends Sprite
 	{
 		
 		private var leap:LeapMotion;
-		
+		private var view:MainView;
 		
 		public function ASLeapMain()
 		{
@@ -38,6 +38,11 @@ package com.mrballistic.asleap
 			leap.controller.addEventListener( LeapEvent.LEAPMOTION_DISCONNECTED, onDisconnect );
 			leap.controller.addEventListener( LeapEvent.LEAPMOTION_EXIT, onExit );
 			leap.controller.addEventListener( LeapEvent.LEAPMOTION_FRAME, onFrame );
+			
+			
+			view = new MainView(this);
+			addChild(view);
+			
 			
 		}
 		
@@ -61,7 +66,7 @@ package com.mrballistic.asleap
 			
 			// Get the most recent frame and report some basic information
 			var frame:Frame = e.frame;
-			trace( "Frame id: " + frame.id + ", timestamp: " + frame.timestamp + ", hands: " + frame.hands.length + ", fingers: " + frame.fingers.length + ", tools: " + frame.tools.length );
+		//	trace( "Frame id: " + frame.id + ", timestamp: " + frame.timestamp + ", hands: " + frame.hands.length + ", fingers: " + frame.fingers.length + ", tools: " + frame.tools.length );
 			
 			if ( frame.hands.length > 0 )
 			{
@@ -78,18 +83,18 @@ package com.mrballistic.asleap
 					avgPos = avgPos.plus( finger.tipPosition );
 					
 					avgPos = avgPos.divide( fingers.length );
-					trace( "Hand has " + fingers.length + " fingers, average finger tip position: " + avgPos );
+				//	trace( "Hand has " + fingers.length + " fingers, average finger tip position: " + avgPos );
 				}
 				
 				// Get the hand's sphere radius and palm position
-				trace( "Hand sphere radius: " + hand.sphereRadius + " mm, palm position: " + hand.palmPosition );
+			//	trace( "Hand sphere radius: " + hand.sphereRadius + " mm, palm position: " + hand.palmPosition );
 				
 				// Get the hand's normal vector and direction
 				var normal:Vector3 = hand.palmNormal;
 				var direction:Vector3 = hand.direction;
 				
 				// Calculate the hand's pitch, roll, and yaw angles
-				trace( "Hand pitch: " + LeapMath.toDegrees( direction.pitch ) + " degrees, " + "roll: " + LeapMath.toDegrees( normal.roll ) + " degrees, " + "yaw: " + LeapMath.toDegrees( direction.yaw ) + " degrees\n" );
+			//	trace( "Hand pitch: " + LeapMath.toDegrees( direction.pitch ) + " degrees, " + "roll: " + LeapMath.toDegrees( normal.roll ) + " degrees, " + "yaw: " + LeapMath.toDegrees( direction.yaw ) + " degrees\n" );
 			}
 		}
 

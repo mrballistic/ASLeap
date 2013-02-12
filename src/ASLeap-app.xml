@@ -52,10 +52,10 @@
 		<title>Leap via Air/Actionscript</title>
 
 		<!-- The type of system chrome to use (either "standard" or "none"). Optional. Default standard. -->
-		<!-- <systemChrome></systemChrome> -->
+		<systemChrome>standard</systemChrome> 
 
 		<!-- Whether the window is transparent. Only applicable when systemChrome is none. Optional. Default false. -->
-		<!-- <transparent></transparent> -->
+		<transparent>false</transparent>
 
 		<!-- Whether the window is initially visible. Optional. Default false. -->
 		<!-- <visible></visible> -->
@@ -87,41 +87,16 @@
 		<!-- The window's initial maximum size, specified as a width/height pair in pixels, such as "1600 1200". Optional. -->
 		<!-- <maxSize></maxSize> -->
 
-        <!-- The aspect ratio of the app ("portrait" or "landscape" or "any"). Optional. Mobile only. Default is the natural orientation of the device -->
-
-        <!-- <aspectRatio></aspectRatio> -->
-
-        <!-- Whether the app will begin auto-orienting on launch. Optional. Mobile only. Default false -->
-
-        <!-- <autoOrients></autoOrients> -->
-
         <!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
 
-        <!-- <fullScreen></fullScreen> -->
+       <fullScreen>true</fullScreen>
 
-        <!-- The render mode for the app (either auto, cpu, gpu, or direct). Optional. Default auto -->
-
-        <!-- <renderMode></renderMode> -->
-
-        <!-- Whether the default direct mode rendering context allocates storage for depth and stencil buffers.  Optional.  Default false. -->
-        <!-- <depthAndStencil></depthAndStencil> -->
-
-		<!-- Whether or not to pan when a soft keyboard is raised or lowered (either "pan" or "none").  Optional.  Defaults "pan." -->
-		<!-- <softKeyboardBehavior></softKeyboardBehavior> -->
+        <renderMode>direct</renderMode>
+        <depthAndStencil>true</depthAndStencil>
 
 
     </initialWindow>
 
-	<!-- We recommend omitting the supportedProfiles element, -->
-	<!-- which in turn permits your application to be deployed to all -->
-	<!-- devices supported by AIR. If you wish to restrict deployment -->
-	<!-- (i.e., to only mobile devices) then add this element and list -->
-	<!-- only the profiles which your application does support. -->
-	<!-- <supportedProfiles>desktop extendedDesktop mobileDevice extendedMobileDevice</supportedProfiles> -->
-
-	<!-- Languages supported by application -->
-	<!-- Only these languages can be specified -->
-	<!-- <supportedLanguages>en de cs es fr it ja ko nl pl pt ru sv tr zh</supportedLanguages> -->
 
 	<!-- The subpath of the standard default installation location to use. Optional. -->
 	<!-- <installFolder></installFolder> -->

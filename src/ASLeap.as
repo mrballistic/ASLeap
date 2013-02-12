@@ -2,6 +2,7 @@ package
 {
 
 	import com.mrballistic.asleap.ASLeapMain;
+	import com.mrballistic.asleap.views.MainView;
 	import com.mrballistic.asleap.vars.Constants;
 	import com.mrballistic.utils.AppUtils;
 	
@@ -21,7 +22,7 @@ package
 		
 		private var bg:Sprite;
 		private var frame:Sprite;
-		private var mainApp:com.mrballistic.asleap.ASLeapMain;
+		private var mainApp:ASLeapMain;
 		private var mainHolder:Sprite;
 		private var timer:Timer;
 		
