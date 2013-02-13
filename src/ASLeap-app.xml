@@ -90,7 +90,6 @@
         <!-- Whether the app launches in full screen. Optional. Mobile only. Default false -->
 
        <fullScreen>true</fullScreen>
-
         <renderMode>direct</renderMode>
         <depthAndStencil>true</depthAndStencil>
 

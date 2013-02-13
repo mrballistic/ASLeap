@@ -33,7 +33,7 @@ package
 			bg.graphics.beginFill(0x000000, 1.0);
 			bg.graphics.drawRect(-1200, -1200, 12000, 12000);
 			bg.graphics.endFill();
-			addChild(bg);
+		//	addChild(bg);
 			
 			// our content wrapper sprite
 			mainHolder = new Sprite();

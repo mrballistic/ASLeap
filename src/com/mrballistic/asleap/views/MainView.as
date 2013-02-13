@@ -4,18 +4,15 @@ package com.mrballistic.asleap.views
 	import com.mrballistic.asleap.ASLeapMain;
 	
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.IOErrorEvent;
 	
 	import base.Base;
-	import flare.basic.*;
-	import flare.core.*;
-	import flare.loaders.*;
-	import flare.system.*;
-	import flash.display.*;
-	import flash.events.*;
 	
 	import flare.basic.Scene3D;
 	import flare.basic.Viewer3D;
+	import flare.core.Camera3D;
 	import flare.core.Pivot3D;
 	
 	public class MainView extends Base
@@ -24,13 +21,16 @@ package com.mrballistic.asleap.views
 		private var scene:Scene3D;
 		private var car:Pivot3D;
 		private var axis:Pivot3D;
+		private var floor:Pivot3D;
 		
 		private var main:ASLeapMain;
+		
+		private var isRotating:int;
 
 		public function MainView(_p:ASLeapMain)
 		{
 			
-			super( "Basics 1 - Drag to look around." );
+			super (" scale test ");
 			
 			main = _p;
 			
@@ -41,17 +41,34 @@ package com.mrballistic.asleap.views
 			scene.addEventListener(Scene3D.COMPLETE_EVENT, completeEvent);
 			scene.addEventListener(IOErrorEvent.IO_ERROR, errorEvent);
 			
-//			scene.camera = new Camera3D( "myOwnCamera" );
-//			scene.camera.setPosition( 0, 10, -20 );
-//			scene.camera.lookAt( 0, 0, 0 );
+			scene.camera = new Camera3D( "myOwnCamera" );
+			scene.camera.setPosition( 0, 10, -20 );
+			scene.camera.lookAt( 0, 0, 0 );
 			
 			car = scene.addChildFromFile("./models/car.f3d");
-			axis = scene.addChildFromFile("./models/axis.f3d");
+			//axis = scene.addChildFromFile("./models/axis.f3d");			
+			floor = scene.addChildFromFile( "./models/plane.f3d" );
 			
 			scene.pause();
 			
 		}
 		
+		public function resetScene(stage:Stage):void {
+			
+			
+			
+		}
+		
+		
+		public function rotateModel(shouldRotate:int):void {
+			if((shouldRotate > 1)||(shouldRotate < -1)){
+				isRotating = shouldRotate;
+			} else {
+				isRotating = 0;
+			}
+			
+			
+		}
 		
 		private function errorEvent(e:IOErrorEvent):void {
 			trace(e);
@@ -66,10 +83,17 @@ package com.mrballistic.asleap.views
 		private function completeEvent(e:Event):void {
 			
 			trace('complete!');
-
-			axis.setScale( 0.5, 0.5, 0.5 );
 			
 			scene.resume();
+			
+			scene.addEventListener( Scene3D.UPDATE_EVENT, updateEvent );
+		}
+		
+		private function updateEvent(e:Event):void 
+		{
+			// simply rotate the model on 'y/up' axis every frame.
+			car.rotateY(isRotating);
+						
 			
 		}
 		

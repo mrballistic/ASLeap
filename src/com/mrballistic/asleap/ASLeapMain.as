@@ -66,7 +66,9 @@ package com.mrballistic.asleap
 			
 			// Get the most recent frame and report some basic information
 			var frame:Frame = e.frame;
-		//	trace( "Frame id: " + frame.id + ", timestamp: " + frame.timestamp + ", hands: " + frame.hands.length + ", fingers: " + frame.fingers.length + ", tools: " + frame.tools.length );
+			//trace( "Frame id: " + frame.id + ", timestamp: " + frame.timestamp + ", hands: " + frame.hands.length + ", fingers: " + frame.fingers.length + ", tools: " + frame.tools.length );
+			
+			view.rotateModel(0);
 			
 			if ( frame.hands.length > 0 )
 			{
@@ -77,12 +79,17 @@ package com.mrballistic.asleap
 				var fingers:Vector.<Finger> = hand.fingers;
 				if ( fingers.length > 0 )
 				{
+					
+					
+					
 					// Calculate the hand's average finger tip position
 					var avgPos:Vector3 = Vector3.zero();
 					for each ( var finger:Finger in fingers )
 					avgPos = avgPos.plus( finger.tipPosition );
 					
 					avgPos = avgPos.divide( fingers.length );
+					
+					view.rotateModel(avgPos.x * .1);
 				//	trace( "Hand has " + fingers.length + " fingers, average finger tip position: " + avgPos );
 				}
 				
